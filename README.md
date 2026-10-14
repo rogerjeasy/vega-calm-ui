@@ -60,8 +60,13 @@ the door, a note from the family, the week's summary — is drawn with it.
 ## Install
 
 ```bash
-npm install vega-calm-ui
+npm install github:rogerjeasy/vega-calm-ui
 ```
+
+It is not published to npm yet, so it installs from this repository. npm
+builds it on install (the `prepare` script runs `tsc`), which is why the first
+install takes a little longer than a registry package would. If your npm
+holds back install scripts, allow this one with `npm approve-scripts vega-calm-ui`.
 
 Peer dependencies: `react` (18.2 or 19), and on Vega
 `@amazon-devices/react-native-kepler` (which every Vega app already has).
