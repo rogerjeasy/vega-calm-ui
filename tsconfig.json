@@ -1,16 +1,29 @@
 {
-  "extends": "../../tsconfig.base.json",
+  // Type-checks everything: the source, its tests, and the ESLint plugin's
+  // plain-JS rules (checked through their JSDoc). tsconfig.build.json emits
+  // only src, without the tests, into dist.
   "compilerOptions": {
+    "target": "ES2022",
+    "lib": ["ES2022"],
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
     "jsx": "react-jsx",
-    "lib": ["ES2022", "DOM"],
-    "outDir": "dist",
-    "rootDir": "src",
+    "types": ["node"],
+    "strict": true,
+    "exactOptionalPropertyTypes": true,
+    "noImplicitOverride": true,
+    "noFallthroughCasesInSwitch": true,
+    "isolatedModules": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "allowJs": true,
+    "checkJs": true,
+    "noEmit": true,
 
     // The Vega SDK ships raw .ts beside its own .d.ts, and TypeScript resolves
-    // .ts first — so the SDK gets typechecked as if it were ours and fails this
-    // check. Contained to the two packages that import the SDK; the base config
-    // is untouched, so every service still has it. See FRICTION.md FL-007.
+    // .ts first, so the SDK is type-checked as if it were this package's code
+    // and fails this one check. Off here so the rest of `strict` can stay on.
     "noUncheckedIndexedAccess": false
   },
-  "include": ["src/**/*"]
+  "include": ["src/**/*", "eslint/**/*", "eslint.config.js", "vitest.config.ts"]
 }
