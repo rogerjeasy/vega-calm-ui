@@ -68,7 +68,10 @@ the door, a note from the family, the week's summary — is drawn with it.
 npm install github:rogerjeasy/vega-calm-ui
 ```
 
-It is not published to npm yet, so it installs from this repository. npm
+It is not published to npm yet, so it installs from this repository; a
+GitHub release publishes it to npm with provenance
+(`.github/workflows/release.yml`), after which `npm install vega-calm-ui`
+works. npm
 builds it on install (the `prepare` script runs `tsc`), which is why the first
 install takes a little longer than a registry package would. If your npm
 holds back install scripts, allow this one with `npm approve-scripts vega-calm-ui`.

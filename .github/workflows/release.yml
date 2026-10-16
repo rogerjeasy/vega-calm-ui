@@ -1,0 +1,37 @@
+name: Release
+
+# Publishes to npm when a GitHub release is published, with provenance: npm
+# shows which commit and which workflow built the package. Needs one secret,
+# NPM_TOKEN (an npm automation token with publish rights), and a release whose
+# tag matches package.json's version (v0.1.0 for 0.1.0).
+
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          registry-url: https://registry.npmjs.org
+          cache: npm
+      - name: Install
+        run: npm ci --ignore-scripts
+      - name: The tag is the version
+        run: |
+          version="v$(node -p "require('./package.json').version")"
+          test "$version" = "${GITHUB_REF_NAME}" || { echo "Release tag ${GITHUB_REF_NAME} is not ${version}"; exit 1; }
+      - name: Verify
+        run: npm run verify
+      - name: Publish
+        run: npm publish --provenance --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
