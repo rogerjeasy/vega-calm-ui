@@ -4,29 +4,19 @@ All notable changes to this project are documented here. The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and the project uses
 [Semantic Versioning](https://semver.org/).
 
-## [Unreleased]
-
-### Added
-
-- Larger text and higher contrast. `CalmPreferencesProvider` gives every
-  component under it a theme (`useCalmTheme`, `useCalmStyles`, `CalmText`):
-  larger text multiplies every size by 1.25 (32pt becomes 40pt); higher
-  contrast is pure black and white (21:1, held to 15:1), a white card edge,
-  every button outlined at rest and a 6dp focus ring. Each theme is checked
-  when it is made (`checkTheme`).
-- `fitCard`: at larger text a card takes the compact spacing, then a body-size
-  headline, and falls back to the standard size rather than cut its words.
-  `CalmCard` takes `mediaSize`, `childWords` and `childLines` so it can tell.
-- `useHighTextContrastEnabled()` follows the platform's high-contrast text
-  setting (Vega's `isHighTextContrastEnabled` and `highTextContrastChanged`).
-- `announce(sentence)` hands a sentence to the screen reader.
+## [0.1.1] — 2026-10-16
 
 ### Changed
 
-- `assertContrast` takes the ratio a theme promises; nothing passes under 7:1.
-- `TwoPhaseCard` reserves its two lines at the theme's size.
+- The README installs from npm (`npm install vega-calm-ui`), with an npm
+  badge; installing from GitHub stays, for trying `main` before a release.
 
-## [0.1.0] — 2026-10-14
+### Fixed
+
+- This changelog: everything listed as unreleased shipped in 0.1.0, which was
+  published on 16 October, not 14.
+
+## [0.1.0] — 2026-10-16
 
 First public release, extracted from Wick, where these components draw every
 card on a Fire TV (Vega OS) app for older people living alone.
@@ -49,6 +39,21 @@ card on a Fire TV (Vega OS) app for older people living alone.
   and `no-auto-dismiss`, with a `recommended` flat config.
 - Compiled ESM output with type declarations in `dist`; works on React Native
   and react-native-tvos through a Metro alias (see the README).
+- Larger text and higher contrast. `CalmPreferencesProvider` gives every
+  component under it a theme (`useCalmTheme`, `useCalmStyles`, `CalmText`):
+  larger text multiplies every size by 1.25 (32pt becomes 40pt); higher
+  contrast is pure black and white (21:1, held to 15:1), a white card edge,
+  every button outlined at rest and a 6dp focus ring. Each theme is checked
+  when it is made (`checkTheme`).
+- `fitCard`: at larger text a card takes the compact spacing, then a body-size
+  headline, and falls back to the standard size rather than cut its words.
+  `CalmCard` takes `mediaSize`, `childWords` and `childLines` so it can tell.
+- `useHighTextContrastEnabled()` follows the platform's high-contrast text
+  setting (Vega's `isHighTextContrastEnabled` and `highTextContrastChanged`).
+- `announce(sentence)` hands a sentence to the screen reader.
+- `assertContrast` takes the ratio a theme promises (15:1 with higher
+  contrast); nothing passes under 7:1. `TwoPhaseCard` reserves its two lines
+  at the theme's size.
 
 ### Removed
 
