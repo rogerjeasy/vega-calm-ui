@@ -3,6 +3,7 @@
 Accessible, low-arousal 10-foot components for **Vega OS** (Fire TV), with an
 ESLint plugin that catches the same mistakes before your code runs.
 
+[![npm](https://img.shields.io/npm/v/vega-calm-ui.svg)](https://www.npmjs.com/package/vega-calm-ui)
 [![CI](https://github.com/rogerjeasy/vega-calm-ui/actions/workflows/ci.yml/badge.svg)](https://github.com/rogerjeasy/vega-calm-ui/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](./LICENSE)
 
@@ -65,16 +66,25 @@ the door, a note from the family, the week's summary — is drawn with it.
 ## Install
 
 ```bash
+npm install vega-calm-ui
+```
+
+It is on [npm](https://www.npmjs.com/package/vega-calm-ui), built and
+compiled: nothing runs on install. Each version is published by this
+repository's release workflow (`.github/workflows/release.yml`) with
+[provenance](https://docs.npmjs.com/generating-provenance-statements), so npm
+shows the commit and the workflow run it was built from, and
+`npm audit signatures` checks it after you install.
+
+To try `main` before it is released, install from GitHub instead:
+
+```bash
 npm install github:rogerjeasy/vega-calm-ui
 ```
 
-It is not published to npm yet, so it installs from this repository; a
-GitHub release publishes it to npm with provenance
-(`.github/workflows/release.yml`), after which `npm install vega-calm-ui`
-works. npm
-builds it on install (the `prepare` script runs `tsc`), which is why the first
-install takes a little longer than a registry package would. If your npm
-holds back install scripts, allow this one with `npm approve-scripts vega-calm-ui`.
+That builds it on install (the `prepare` script runs `tsc`), so it takes a
+little longer. If your npm holds back install scripts, allow this one with
+`npm approve-scripts vega-calm-ui`.
 
 Peer dependencies: `react` (18.2 or 19), and on Vega
 `@amazon-devices/react-native-kepler` (which every Vega app already has).
