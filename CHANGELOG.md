@@ -4,12 +4,12 @@ All notable changes to this project are documented here. The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and the project uses
 [Semantic Versioning](https://semver.org/).
 
-## [Unreleased]
+## [0.1.2] — 2026-10-16
 
 ### Changed
 
-- The release workflow publishes with npm 11, which can use npm's trusted
-  publishing (OIDC) instead of a stored token.
+- Published through npm's trusted publishing (OIDC): the release workflow
+  installs npm 11 and no npm token is stored anywhere. Provenance as before.
 
 ## [0.1.1] — 2026-10-16
 

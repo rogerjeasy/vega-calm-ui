@@ -1,10 +1,10 @@
 name: Release
 
 # Publishes to npm when a GitHub release is published, with provenance: npm
-# shows which commit and which workflow built the package. Needs either a
-# trusted publisher for this repository and release.yml on npmjs.com, or one
-# secret, NPM_TOKEN (a granular token with publish rights and bypass 2FA), and a
-# release whose tag matches package.json's version (v0.1.2 for 0.1.2).
+# shows which commit and which workflow built the package. It publishes through
+# npm's trusted publishing (OIDC): the package's trusted publisher on npmjs.com is
+# this repository's release.yml, so no token is stored anywhere. Needs a release
+# whose tag matches package.json's version (v0.1.2 for 0.1.2).
 
 on:
   release:
@@ -26,8 +26,6 @@ jobs:
           cache: npm
       - name: npm 11
         # Trusted publishing (OIDC) needs npm 11.5.1 or later; Node 22 ships npm 10.
-        # With a trusted publisher set for this package on npmjs.com, npm publishes
-        # without NPM_TOKEN; until then it uses the token below.
         run: npm install -g npm@11.21.0
       - name: Install
         run: npm ci --ignore-scripts
@@ -39,5 +37,3 @@ jobs:
         run: npm run verify
       - name: Publish
         run: npm publish --provenance --access public
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
